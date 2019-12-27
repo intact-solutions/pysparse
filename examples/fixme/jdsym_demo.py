@@ -20,7 +20,7 @@ del Asigma
 k_conv, lmbd, Q, it, it_inner  = \
         jdsym.jdsym(A.to_sss(), M.to_sss(), K, 5, sigma, 1e-10, 150, itsolvers.qmrs,
                     jmin=5, jmax=10, eps_tr=1e-4, toldecay=2.0, linitmax=200, clvl=1, strategy=1)
-print k_conv, lmbd, it, it_inner
+print(k_conv, lmbd, it, it_inner)
 
 
 ##path = '/homes/geus/jdbsym/test/'

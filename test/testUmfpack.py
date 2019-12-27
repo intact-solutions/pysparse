@@ -40,32 +40,32 @@ class SpDiagsTestCase(unittest.TestCase):
     def testVanilla(self):
         self.LU = PysparseUmfpackSolver(self.A)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testUnsymmetric(self):
         self.LU = PysparseUmfpackSolver(self.A, strategy='unsymmetric')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testSymmetric(self):
         self.LU = PysparseUmfpackSolver(self.A, strategy='symmetric')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def test2by2(self):
         self.LU = PysparseUmfpackSolver(self.A, strategy='2by2')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testNoScaling(self):
         self.LU = PysparseUmfpackSolver(self.A, scale='none')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testScaleMax(self):
         self.LU = PysparseUmfpackSolver(self.A, scale='max')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
 
             
@@ -102,32 +102,32 @@ class Poisson1dTestCase(unittest.TestCase):
     def testPoisson1dDefault(self):
         self.LU = PysparseUmfpackSolver(self.B)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dUnsymmetric(self):
         self.LU = PysparseUmfpackSolver(self.B, strategy='unsymmetric')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dSymmetric(self):
         self.LU = PysparseUmfpackSolver(self.B, strategy='symmetric')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1d2by2(self):
         self.LU = PysparseUmfpackSolver(self.B, strategy='2by2')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dNoScaling(self):
         self.LU = PysparseUmfpackSolver(self.B, scale='none')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dScaleMax(self):
         self.LU = PysparseUmfpackSolver(self.B, scale='max')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
 
 
@@ -168,32 +168,32 @@ class Poisson2dTestCase(unittest.TestCase):
     def testPoisson2dDefault(self):
         self.LU = PysparseUmfpackSolver(self.B)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dUnsymmetric(self):
         self.LU = PysparseUmfpackSolver(self.B, strategy='unsymmetric')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dSymmetric(self):
         self.LU = PysparseUmfpackSolver(self.B, strategy='symmetric')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2d2by2(self):
         self.LU = PysparseUmfpackSolver(self.B, strategy='2by2')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dNoScaling(self):
         self.LU = PysparseUmfpackSolver(self.B, scale='none')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dScaleMax(self):
         self.LU = PysparseUmfpackSolver(self.B, scale='max')
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
 
 

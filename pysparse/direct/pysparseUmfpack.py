@@ -129,13 +129,13 @@ class PysparseUmfpackSolver( PysparseDirectSolver ):
     def __init__(self, A, **kwargs):
         PysparseDirectSolver.__init__(self, A, **kwargs)
 
-        if 'strategy' in kwargs.keys():
+        if 'strategy' in list(kwargs.keys()):
             strategy = upper(kwargs.get('strategy'))
             if strategy not in ['AUTO', 'UNSYMMETRIC', 'SYMMETRIC', '2BY2']:
                 strategy = 'AUTO'
             kwargs['strategy'] = 'UMFPACK_STRATEGY_' + strategy
 
-        if 'scale' in kwargs.keys():
+        if 'scale' in list(kwargs.keys()):
             scale = upper(kwargs.get('scale'))
             if scale not in ['NONE', 'SUM', 'MAX']: scale = 'SUM'
             kwargs['scale'] = 'UMFPACK_SCALE_' + scale

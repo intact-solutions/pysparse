@@ -111,8 +111,8 @@ if __name__ == '__main__':
         else:
             import matplotlib.pylab as MM
     except:
-        print ' If you had Matplotlib installed, you would be looking'
-        print ' at timing plots right now...'
+        print(' If you had Matplotlib installed, you would be looking')
+        print(' at timing plots right now...')
         sys.exit(0)
         
     darkblue = '#2c11cf'
@@ -126,11 +126,11 @@ if __name__ == '__main__':
     styles = [ style0, style1, style2 ]
 
     # For the number of iterations, use first value of p as reference
-    x = range(len(problem_list))
+    x = list(range(len(problem_list)))
     ax = MM.subplot(111)
     lgnd = []
     i = 0
-    for k in timings.keys():
+    for k in list(timings.keys()):
         ax.plot(x, timings[k], color = colors[i], linewidth = 2)
         lgnd.append(k)
         i += 1

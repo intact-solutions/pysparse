@@ -2,7 +2,7 @@
 Preconditioners.
 """
 
-__all__ = filter(lambda s:not s.startswith('_'), dir())
+__all__ = [s for s in dir() if not s.startswith('_')]
 
 from pysparse.misc import Deprecated
 

@@ -10,9 +10,9 @@ except ImportError:
     Warning("Run setup.py to generate version number.")
     __version__ = 'undefined'
     
-from sparse import spmatrix
+from .sparse import spmatrix
 #from sparse import *
-from misc import get_include
+from .misc import get_include
 
 pkgload = PackageLoader()
 pkgload(verbose=False,postpone=True)
@@ -26,7 +26,7 @@ Available subpackages
 if __doc__:
     __doc__ += pkgload.get_pkgdocs()
 
-__all__ = filter(lambda s: not s.startswith('_'), dir())
+__all__ = [s for s in dir() if not s.startswith('_')]
 __all__ += '__version__'
 
 __doc__ += """

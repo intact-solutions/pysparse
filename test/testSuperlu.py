@@ -52,7 +52,7 @@ class SpDiagsTestCase(unittest.TestCase):
         self.descr = 'spdgs-trsh'
         self.LU = PysparseSuperLUSolver(self.A, diag_pivot_thresh=0.5)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     #def testTrivialRelax(self):
     #    self.descr = 'spdgs-relx'
@@ -70,13 +70,13 @@ class SpDiagsTestCase(unittest.TestCase):
         self.descr = 'spdgs-prm0'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=0)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testTrivialperm1(self):
         self.descr = 'spdgs-prm1'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=1)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     #def testTrivialperm2(self):
     #    self.descr = 'spdgs-prm2'
@@ -88,7 +88,7 @@ class SpDiagsTestCase(unittest.TestCase):
         self.descr = 'spdgs-prm3'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=3)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
             
 class Poisson1dTestCase(unittest.TestCase):
 
@@ -125,49 +125,49 @@ class Poisson1dTestCase(unittest.TestCase):
         self.descr = 'poi1d-dflt'
         self.LU = PysparseSuperLUSolver(self.A)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dThresh(self):
         self.descr = 'poi1d-trsh'
         self.LU = PysparseSuperLUSolver(self.A, diag_pivot_thresh=0.5)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dRelax(self):
         self.descr = 'poi1d-relx'
         self.LU = PysparseSuperLUSolver(self.A, relax=20)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dPanel(self):
         self.descr = 'poi1d-size'
         self.LU = PysparseSuperLUSolver(self.A, panel_size=1)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dperm0(self):
         self.descr = 'poi1d-prm0'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=0)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dperm1(self):
         self.descr = 'poi1d-prm1'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=1)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dperm2(self):
         self.descr = 'poi1d-prm2'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=2)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson1dperm3(self):
         self.descr = 'poi1d-prm3'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=3)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
         
 class Poisson2dTestCase(unittest.TestCase):
     def setUp(self):
@@ -206,49 +206,49 @@ class Poisson2dTestCase(unittest.TestCase):
         self.descr = 'poi2d-dftl'
         self.LU = PysparseSuperLUSolver(self.A)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dThresh(self):
         self.descr = 'poi2d-trsh'
         self.LU = PysparseSuperLUSolver(self.A, diag_pivot_thresh=0.5)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dRelax(self):
         self.descr = 'poi2d-relx'
         self.LU = PysparseSuperLUSolver(self.A, relax=20)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dPanel(self):
         self.descr = 'poi2d-size'
         self.LU = PysparseSuperLUSolver(self.A, panel_size=1)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dperm0(self):
         self.descr = 'poi2d-prm0'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=0)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dperm1(self):
         self.descr = 'poi2d-prm1'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=1)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dperm2(self):
         self.descr = 'poi2d-prm2'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=2)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
 
     def testPoisson2dperm3(self):
         self.descr = 'poi2d-prm3'
         self.LU = PysparseSuperLUSolver(self.A, permc_spec=3)
         self.LU.solve(self.b)
-        self.failUnless(self.computeError(self.LU.sol) < self.tol)
+        self.assertTrue(self.computeError(self.LU.sol) < self.tol)
         
 if __name__ == '__main__':
     headfmt = '\t%10s  %8s  %8s  %8s  %8s  %6s  %6s'

@@ -2,9 +2,9 @@
 System Tools.
 """
 
-from system import *
+from .system import *
 
-__all__ = filter(lambda s:not s.startswith('_'), dir())
+__all__ = [s for s in dir() if not s.startswith('_')]
 
 import warnings
 

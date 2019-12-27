@@ -51,20 +51,20 @@ n = 50
 
 t1 = time.clock()
 L = poisson2d(n)
-print 'Time for constructing the matrix: %8.2f sec' % (time.clock() - t1, )
+print('Time for constructing the matrix: %8.2f sec' % (time.clock() - t1, ))
 #L.export_mtx('poi2d_100.mtx')
 
 A = L.to_csr()
 
 
 S = L.to_sss()
-print L.nnz
-print S.nnz
-print A.nnz
+print(L.nnz)
+print(S.nnz)
+print(A.nnz)
 b = np.ones(n*n, 'd')
 e = np.ones(n*n, 'd')
 c = np.ones(n*n, 'd')
-for loop in xrange(n*n):
+for loop in range(n*n):
     b[loop]= loop
     c[loop] = loop
 y = np.ones(n*n, 'd')
@@ -77,16 +77,16 @@ t1 = time.clock()
 
 x = np.empty(n*n, 'd')
 info, iter, relres = gmres(S, b, x, 1e-12, 200, None, 100)
-print 'info=%d, iter=%d, relres=%e' % (info, iter, relres)
+print('info=%d, iter=%d, relres=%e' % (info, iter, relres))
 
-print 'Solve time using SSS matrix: %8.2f s' % (time.clock() - t1)
+print('Solve time using SSS matrix: %8.2f s' % (time.clock() - t1))
 
-print 'norm(x) = %g' % np.linalg.norm(x)
+print('norm(x) = %g' % np.linalg.norm(x))
 
 r = np.empty(n*n, 'd')
 S.matvec(x, r)
 r = b - r
-print 'norm(b - A*x) = %g' % np.linalg.norm(r)
+print('norm(b - A*x) = %g' % np.linalg.norm(r))
 
 # -----------------------------------------------------------------------------
 
@@ -94,16 +94,16 @@ t1 = time.clock()
 
 x = np.empty(n*n, 'd')
 info, iter, relres = gmres(A, b, x, 1e-12, 200)
-print 'info=%d, iter=%d, relres=%e' % (info, iter, relres)
+print('info=%d, iter=%d, relres=%e' % (info, iter, relres))
 
-print 'Solve time using CSR matrix: %8.2f s' % (time.clock() - t1)
+print('Solve time using CSR matrix: %8.2f s' % (time.clock() - t1))
 
-print 'norm(x) = %g' % np.linalg.norm(x)
+print('norm(x) = %g' % np.linalg.norm(x))
 
 r = np.empty(n*n, 'd')
 A.matvec(x, r)
 r = b - r
-print 'norm(b - A*x) = %g' % np.linalg.norm(r)
+print('norm(b - A*x) = %g' % np.linalg.norm(r))
 
 # -----------------------------------------------------------------------------
 
@@ -111,16 +111,16 @@ t1 = time.clock()
 
 x = np.empty(n*n, 'd')
 info, iter, relres = gmres(L, b, x, 1e-12, 200)
-print 'info=%d, iter=%d, relres=%e' % (info, iter, relres)
+print('info=%d, iter=%d, relres=%e' % (info, iter, relres))
 
-print 'Solve time using LL matrix: %8.2f s' % (time.clock() - t1)
+print('Solve time using LL matrix: %8.2f s' % (time.clock() - t1))
 
-print 'norm(x) = %g' % np.linalg.norm(x)
+print('norm(x) = %g' % np.linalg.norm(x))
 
 r = np.empty(n*n, 'd')
 A.matvec(x, r)
 r = b - r
-print 'norm(b - A*x) = %g' % np.linalg.norm(r)
+print('norm(b - A*x) = %g' % np.linalg.norm(r))
 
 # -----------------------------------------------------------------------------
 
@@ -129,16 +129,16 @@ t1 = time.clock()
 
 x = np.empty(n*n, 'd')
 info, iter, relres = gmres(S, b, x, 1e-12, 500, K_ssor, 20)
-print 'info=%d, iter=%d, relres=%e' % (info, iter, relres)
+print('info=%d, iter=%d, relres=%e' % (info, iter, relres))
 
-print 'Solve time using SSS matrix and SSOR preconditioner: %8.2f s' % (time.clock() - t1)
+print('Solve time using SSS matrix and SSOR preconditioner: %8.2f s' % (time.clock() - t1))
 
-print 'norm(x) = %g' % np.linalg.norm(x)
+print('norm(x) = %g' % np.linalg.norm(x))
 
 r = np.empty(n*n, 'd')
 S.matvec(x, r)
 r = b - r
-print 'norm(b - A*x) = %g' % np.linalg.norm(r)
+print('norm(b - A*x) = %g' % np.linalg.norm(r))
 
 # -----------------------------------------------------------------------------
 
@@ -147,13 +147,13 @@ print 'norm(b - A*x) = %g' % np.linalg.norm(r)
 
 x = np.empty(n*n, 'd')
 info, iter, relres = gmres(S, b, x, 1e-15, 500, K_ssor, 50)
-print 'info=%d, iter=%d, relres=%e' % (info, iter, relres)
+print('info=%d, iter=%d, relres=%e' % (info, iter, relres))
 
-print 'Solve time using SSS matrix and SSOR preconditioner: %8.2f s' % (time.clock() - t1)
+print('Solve time using SSS matrix and SSOR preconditioner: %8.2f s' % (time.clock() - t1))
 
-print 'norm(x) = %g' % np.linalg.norm(x)
+print('norm(x) = %g' % np.linalg.norm(x))
 
 r = np.empty(n*n, 'd')
 S.matvec(x, r)
 r = b - r
-print 'norm(b - A*x) = %g' % np.linalg.norm(r)
+print('norm(b - A*x) = %g' % np.linalg.norm(r))

@@ -17,7 +17,7 @@ if test == 1:
     sigma = 25.0
 
     I = spmatrix.ll_mat(n, n)
-    for i in xrange(n):
+    for i in range(n):
         I[i,i] = 1.0
     Keye = precon.jacobi(I)
     
@@ -38,7 +38,7 @@ elif test == 2:
     b = Numeric.ones(n, 'd')
     x = Numeric.zeros(n, 'd')
     K.precon(b, x)
-    print 'norm(idiag) = %.16g' % (math.sqrt(Numeric.dot(x, x)), )
+    print('norm(idiag) = %.16g' % (math.sqrt(Numeric.dot(x, x)), ))
 
     k_conv, lmbd, Q, it, it_inner  = jdsym.jdsym(A.to_sss(), M.to_sss(), K, 5, sigma, 1e-10, 150, itsolvers.qmrs,
                                        jmin=5, jmax=10, eps_tr=1e-4, toldecay=2.0, linitmax=200, clvl=1, strategy=1)
@@ -78,7 +78,7 @@ elif test == 5:
                                        jmin=5, jmax=10, eps_tr=1e-4, toldecay=2.0, linitmax=1000, clvl=1,
                                        strategy=1)
     
-    print k_conv, lmbd, it, it_inner
+    print(k_conv, lmbd, it, it_inner)
 
 elif test == 6:
 
@@ -93,7 +93,7 @@ elif test == 6:
             self.lu11.solve(x[:n11], y[:n11])
             self.K22.precon(x[n11:], y[n11:])
 
-    print 'Loading matrices...'
+    print('Loading matrices...')
     path = '/home/geus/matrices/'
     A = spmatrix.ll_mat_from_mtx(path + 'cop18_el5_A.mtx')
     M = spmatrix.ll_mat_from_mtx(path + 'cop18_el5_M.mtx')
@@ -101,7 +101,7 @@ elif test == 6:
     sigma = 1.4
     n11 = 4688
 
-    print 'Constructing preconditioner...'
+    print('Constructing preconditioner...')
     Asigma = A.copy()
     Asigma.shift(-sigma, M)
     K = prec2lev(Asigma, n11)
@@ -110,5 +110,5 @@ elif test == 6:
                                        jmin=10, jmax=25, eps_tr=1e-3, toldecay=1.5, linitmax=3000, clvl=1,
                                        strategy=1)
 
-    print k_conv, lmbd, it, it_inner
+    print(k_conv, lmbd, it, it_inner)
 

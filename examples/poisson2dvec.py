@@ -9,7 +9,7 @@ def poisson2d_vec(n):
     L.put(4.0, d)
     L.put(-1.0, d[:-n], d[n:])
     L.put(-1.0, d[n:], d[:-n])
-    for i in xrange(n):
+    for i in range(n):
         di = d[i*n:(i+1)*n]
         L.put(-1.0, di[1:], di[:-1])
         L.put(-1.0, di[:-1], di[1:])
@@ -21,7 +21,7 @@ def poisson2d_vec_sym(n):
     d = np.arange(n2, dtype=np.int)
     L.put(4.0, d)
     L.put(-1.0, d[n:], d[:-n])
-    for i in xrange(n):
+    for i in range(n):
         di = d[i*n:(i+1)*n]
         L.put(-1.0, di[:-1], di[1:])
     return L
@@ -35,7 +35,7 @@ def poisson2d_vec_sym_blk(n):
     D.put(-1.0, d[1:], d[:-1])
     P = spmatrix.ll_mat_sym(n, n-1)
     P.put(-1,d)
-    for i in xrange(n-1):
+    for i in range(n-1):
         L[i*n:(i+1)*n, i*n:(i+1)*n] = D
         L[(i+1)*n:(i+2)*n, i*n:(i+1)*n] = P
     # Last diagonal block

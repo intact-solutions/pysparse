@@ -10,14 +10,14 @@ R = np.random.random_integers(0, n-1, (nnz,2))
 
 t1 = time.clock()
 
-for k in xrange(nnz):
+for k in range(nnz):
     A[int(R[k,0]), int(R[k,1])] = k
     
-print 'Time for populating matrix: %8.2f s' % (time.clock() - t1)
+print('Time for populating matrix: %8.2f s' % (time.clock() - t1))
 
-print 'nnz(A) = ', A.nnz
+print('nnz(A) = ', A.nnz)
 
 B = A[:,:]
 A.shift(-1.0, B)
-print A
+print(A)
 

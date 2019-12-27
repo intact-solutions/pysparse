@@ -21,10 +21,10 @@ b = np.array([8.0, 45.0, -3.0, 3.0, 19.0], "d")
 x = np.zeros(5, "d")
 umf = umfpack.factorize(l)
 umf.solve(b, x, 'UMFPACK_A')
-print umf.getlists()
-print x
+print(umf.getlists())
+print(x)
 
-print "------------------------------"
+print("------------------------------")
 
 n = 50
 L = poisson2d_vec_sym_blk(n)
@@ -36,4 +36,4 @@ umf.solve(b, x, 'UMFPACK_A')
 r = np.empty(n * n, 'd')
 L.matvec(x, r)
 r = b - r
-print 'norm(b - A * x) = %f' % np.linalg.norm(r)
+print('norm(b - A * x) = %f' % np.linalg.norm(r))

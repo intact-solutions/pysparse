@@ -9,7 +9,7 @@ class diagPrecShifted:
         self.shape = A.shape
         n = self.shape[0]
         self.dinv = zeros(n, 'd')
-        for i in xrange(n):
+        for i in range(n):
             self.dinv[i] = 1.0 / (A[i,i] - sigma*M[i,i])
     def precon(self, x, y):
         multiply(x, self.dinv, y)
@@ -20,10 +20,10 @@ def computeResiduals(A, M, lmbd, Q):
     r = zeros((n, ), 'd')
     u = zeros((n, ), 'd')
     t = zeros((n, ), 'd')
-    for k in xrange(kconv):
+    for k in range(kconv):
         u = Q[:,k].copy()
         A.matvec(u, r)
-        if M <> None:
+        if M != None:
             M.matvec(u, t)
         else:
             t = u
@@ -34,12 +34,12 @@ def computeResiduals(A, M, lmbd, Q):
 n = 1000; ncv = 5; tol = 1e-6
 
 A = spmatrix.ll_mat_sym(n)
-for i in xrange(n):
+for i in range(n):
     A[i,i] = i+1.0
 As = A.to_sss()
 
 M = spmatrix.ll_mat_sym(n)
-for i in xrange(n):
+for i in range(n):
     M[i,i] = float(n/2) + i
 Ms = M.to_sss()
 normM = M[n-1,n-1]
@@ -49,10 +49,10 @@ K = diagPrecShifted(A, M, 0.006)
 #-------------------------------------------------------------------------------
 # Test 1: M = K = None
 
-print 'Test 1'
+print('Test 1')
 
 lmbd_exact = zeros(ncv, 'd')
-for k in xrange(ncv):
+for k in range(ncv):
     lmbd_exact[k] =  A[k,k]
 
 kconv, lmbd, Q, it, it_inner = jdsym.jdsym(As, None, None, ncv,
@@ -63,15 +63,15 @@ assert ncv == kconv
 assert allclose(computeResiduals(As, None, lmbd, Q), zeros(kconv), 0.0, tol)
 assert allclose(lmbd, lmbd_exact, tol*tol, 0.0)
 
-print 'OK'
+print('OK')
 
 #-------------------------------------------------------------------------------
 # Test 2: K = None
 
-print 'Test 2',
+print('Test 2', end=' ')
 
 lmbd_exact = zeros(ncv, 'd')
-for k in xrange(ncv):
+for k in range(ncv):
     lmbd_exact[k] =  A[k,k]/M[k,k]
 
 
@@ -85,15 +85,15 @@ assert ncv == kconv
 assert allclose(computeResiduals(As, Ms, lmbd, Q), zeros(kconv), 0.0, normM*tol)
 assert allclose(lmbd, lmbd_exact, normM*tol*tol, 0.0)
 
-print 'OK'
+print('OK')
 
 #-------------------------------------------------------------------------------
 # Test 3: general case
 
-print 'Test 3',
+print('Test 3', end=' ')
 
 lmbd_exact = zeros(ncv, 'd')
-for k in xrange(ncv):
+for k in range(ncv):
     lmbd_exact[k] =  A[k,k]/M[k,k]
 
 kconv, lmbd, Q, it, it_inner = jdsym.jdsym(As, Ms, K, ncv,
@@ -103,19 +103,19 @@ assert ncv == kconv
 assert allclose(computeResiduals(As, Ms, lmbd, Q), zeros(kconv), 0.0, normM*tol)
 assert allclose(lmbd, lmbd_exact, normM*tol*tol, 0.0)
 
-print 'OK'
+print('OK')
 
 #-------------------------------------------------------------------------------
 # Test 4: K = None, with X0
 
-print 'Test 4',
+print('Test 4', end=' ')
 
 lmbd_exact = zeros(ncv, 'd')
-for k in xrange(ncv):
+for k in range(ncv):
     lmbd_exact[k] =  A[k,k]/M[k,k]
 
 X0 = random.random((n,ncv))
-for k in xrange(ncv):
+for k in range(ncv):
     X0[k,k] = 10000
 
 kconv, lmbd, Q, it, it_inner = jdsym.jdsym(As, Ms, None, ncv,
@@ -127,4 +127,4 @@ assert ncv == kconv
 assert allclose(computeResiduals(As, Ms, lmbd, Q), zeros(kconv), 0.0, normM*tol)
 assert allclose(lmbd, lmbd_exact, normM*tol*tol, 0.0)
 
-print 'OK'
+print('OK')

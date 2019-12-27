@@ -9,7 +9,7 @@ def printMatrix(M):
     for i in range(n):
         for j in range(m):
             Z[i,j] = M[i,j]
-    print str(Z) + '\n'
+    print(str(Z) + '\n')
     
 n = 10
 A = spmatrix.ll_mat(n,n)
@@ -37,11 +37,11 @@ for i in range(n):
     I[i,i] = 1
     Is[i,i] = 1
 
-print 'Setting matrix elements'
+print('Setting matrix elements')
 printMatrix(A)
 printMatrix(As)
 
-print 'Extracting submatrices'
+print('Extracting submatrices')
 printMatrix(A[4:8,1:3])
 printMatrix(As[4:8,1:3])
 printMatrix(A[1:3,4:8])
@@ -49,22 +49,22 @@ printMatrix(As[1:3,4:8])
 
 printMatrix(A[6:9,6:9])
 printMatrix(As[6:9,6:9])
-print As[5:9,5:9]
-print
+print(As[5:9,5:9])
+print()
 
-print 'this should raise an execption...\n'
+print('this should raise an execption...\n')
 try:
     As[5:9, 4:10]
 except:
     traceback.print_exc()
    
-print 'Setting submatrices'
+print('Setting submatrices')
 T = spmatrix.ll_mat_sym(n)
 T[6:9,6:9] = As[6:9,6:9]
 T[4:8,1:3] = As[4:8,1:3]
 printMatrix(T)
 
-print 'this should raise execptions...\n'
+print('this should raise execptions...\n')
 try:
     T[6:9,6:9] = A[6:9,6:9]
 except:
@@ -74,7 +74,7 @@ try:
 except:
     traceback.print_exc()
 
-print 'Matrix multiplications'
+print('Matrix multiplications')
 
 printMatrix(spmatrix.matrixmultiply(I, A))
 printMatrix(spmatrix.matrixmultiply(Is, A))
@@ -82,26 +82,26 @@ printMatrix(spmatrix.matrixmultiply(Is, A))
 printMatrix(spmatrix.matrixmultiply(O, O))
 printMatrix(spmatrix.matrixmultiply(Os, O))
 
-print 'Dot product'
+print('Dot product')
 printMatrix(spmatrix.dot(I, A))
 
-print 'Matrix export'
+print('Matrix export')
 A[:4,:4].export_mtx('A.mtx', 3)
 As[:4,:4].export_mtx('As.mtx', 3)
 
-print open('A.mtx').read()
-print open('As.mtx').read()
+print(open('A.mtx').read())
+print(open('As.mtx').read())
 
-print 'Matrix import'
+print('Matrix import')
 printMatrix(spmatrix.ll_mat_from_mtx('A.mtx'))
 printMatrix(spmatrix.ll_mat_from_mtx('As.mtx'))
 
-print 'Conversion to CSR'
-print A[:4,:4]
-print A[:4,:4].to_csr()
-print As[:4,:4].to_csr()
+print('Conversion to CSR')
+print(A[:4,:4])
+print(A[:4,:4].to_csr())
+print(As[:4,:4].to_csr())
 
-print 'update_add_mask operations'
+print('update_add_mask operations')
 ind = np.array([3, 4, 5, 6], 'i')
 mask = np.array([1, 1, 1, 1], 'i')
 B = np.ones((4,4), 'd')
@@ -113,26 +113,26 @@ printMatrix(Ac[2:8,2:8])
 printMatrix(A[2:8,2:8])
 printMatrix(As[2:8,2:8])
 
-print 'deleting rows'
+print('deleting rows')
 
 Atemp = A.copy()
-print 'original matrix:'
+print('original matrix:')
 printMatrix(Atemp)
 
-print 'Matrix with rows 7 and 8 and deleted:'
+print('Matrix with rows 7 and 8 and deleted:')
 mask = np.ones(n, 'l')
 mask[7:9] = 0
 Atemp.delete_rows(mask)
 printMatrix(Atemp)
-print Atemp.delete_rows.__doc__
+print(Atemp.delete_rows.__doc__)
 
-print 'deleting rows and column'
+print('deleting rows and column')
 
 Atemp = As.copy()
-print 'original matrix:'
+print('original matrix:')
 printMatrix(Atemp)
 
-print 'Matrix with rows/cols 7 and 8 and deleted:'
+print('Matrix with rows/cols 7 and 8 and deleted:')
 mask = np.ones(n, 'l')
 mask[7:9] = 0
 Atemp.delete_rowcols(mask)

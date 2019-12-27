@@ -49,8 +49,8 @@ source_suffix = '.rst'
 master_doc = 'contents'
 
 # General information about the project.
-project = u'Pysparse'
-copyright = u'2008-2011, Roman Geus, Daniel Wheeler and Dominique Orban'
+project = 'Pysparse'
+copyright = '2008-2011, Roman Geus, Daniel Wheeler and Dominique Orban'
 
 # The version info for the project you're documenting, acts as replacement for
 # |version| and |release|, also used in various other places throughout the
@@ -181,8 +181,8 @@ htmlhelp_basename = 'Pysparsedoc'
 # Grouping the document tree into LaTeX files. List of tuples
 # (source start file, target name, title, author, document class [howto/manual]).
 latex_documents = [
-  ('contents', 'Pysparse.tex', ur'Pysparse Documentation',
-   ur'Roman Geus, Daniel Wheeler and Dominique Orban', 'manual'),
+  ('contents', 'Pysparse.tex', r'Pysparse Documentation',
+   r'Roman Geus, Daniel Wheeler and Dominique Orban', 'manual'),
 ]
 
 # The name of an image file (relative to this directory) to place at the top of
@@ -194,7 +194,7 @@ latex_logo = 'spmatrix-logo.png'
 #latex_use_parts = False
 
 # Additional stuff for the LaTeX preamble.
-latex_preamble = '\usepackage{amsfonts,amsmath}'
+latex_preamble = '\\usepackage{amsfonts,amsmath}'
 
 # Documents to append as an appendix to all manuals.
 #latex_appendices = []

@@ -13,12 +13,12 @@ def configuration(parent_package='',top_path=None):
     import fnmatch
     import os
     import sys
-    import ConfigParser
+    import configparser
     from numpy.distutils.misc_util import Configuration
     from numpy.distutils.system_info import get_info, NotFoundError
 
     # Read relevant PySparse-specific configuration options.
-    pysparse_config = ConfigParser.SafeConfigParser()
+    pysparse_config = configparser.SafeConfigParser()
     pysparse_config.read(os.path.join(top_path, 'site.cfg'))
 
     suitesparse_include = getoption(pysparse_config, 'UMFPACK', 'suitesparse_include')
@@ -36,8 +36,8 @@ def configuration(parent_package='',top_path=None):
     if not blas_info:
         blas_info = get_info('blas',0)
         if not blas_info:
-            print 'No blas info found'
-    print 'Direct:: Using BLAS info:' ; print blas_info
+            print('No blas info found')
+    print('Direct:: Using BLAS info:') ; print(blas_info)
 
     # If UMFPACK or AMD library was not specified, use default.
     umfpack_lib = ['umfpack']
@@ -45,9 +45,9 @@ def configuration(parent_package='',top_path=None):
     amd_lib = ['amd']
     amd_src = []
     if suitesparse_libdir is None or suitesparse_include is None:
-        print 'Using default UMFPACK and AMD'
-        print ' If you do not like this, edit the [UMFPACK] and [AMD]'
-        print ' sections of site.cfg'
+        print('Using default UMFPACK and AMD')
+        print(' If you do not like this, edit the [UMFPACK] and [AMD]')
+        print(' sections of site.cfg')
         umfpack_lib = []
         umfpack_libdir = []
         umfpack_srcs = fnmatch.filter(os.listdir(os.path.join(cwd,
@@ -106,8 +106,8 @@ def configuration(parent_package='',top_path=None):
     superlu_lib = ['superlu']
     superlu_src = []
     if superlu_libdir is None:
-        print 'Using default SuperLU.'
-        print ' If you do not like this, edit the [SuperLU] section of site.cfg'
+        print('Using default SuperLU.')
+        print(' If you do not like this, edit the [SuperLU] section of site.cfg')
         superlu_lib = []
         superlu_libdir = []
         superlu_srcs = fnmatch.filter(os.listdir(os.path.join(cwd,

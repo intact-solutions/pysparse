@@ -28,10 +28,10 @@ class test_sparray(unittest.TestCase):
         a = sparray((5,5))
         a[:,3] = (1,2,3,4,5)
         import numpy
-        self.assertTrue(numpy.allclose(a[:,3], map(float, (1,2,3,4,5))))
+        self.assertTrue(numpy.allclose(a[:,3], list(map(float, (1,2,3,4,5)))))
         a[3,3] = 7
         self.assertEqual(a[3,3], 7)
-        self.assertTrue(numpy.allclose(a[3,:], map(float, (0,0,0,7,0))))
+        self.assertTrue(numpy.allclose(a[3,:], list(map(float, (0,0,0,7,0)))))
 
 if __name__=='__main__':
     suite = unittest.TestSuite()

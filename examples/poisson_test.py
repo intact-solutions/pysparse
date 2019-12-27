@@ -52,22 +52,22 @@ n = 100
 
 t1 = time.clock()
 L = poisson2d_sym_blk(n)
-print 'Time for constructing the matrix using poisson2d_sym_blk: %8.2f sec' % (time.clock() - t1, )
+print('Time for constructing the matrix using poisson2d_sym_blk: %8.2f sec' % (time.clock() - t1, ))
 
 t1 = time.clock()
 L = poisson2d_sym(n)
-print 'Time for constructing the matrix using poisson2d_sym    : %8.2f sec' % (time.clock() - t1, )
+print('Time for constructing the matrix using poisson2d_sym    : %8.2f sec' % (time.clock() - t1, ))
 
 t1 = time.clock()
 L = poisson2d(n)
-print 'Time for constructing the matrix using poisson2d        : %8.2f sec' % (time.clock() - t1, )
+print('Time for constructing the matrix using poisson2d        : %8.2f sec' % (time.clock() - t1, ))
 
 
 A = L.to_csr()
 S = L.to_sss()
-print L.nnz
-print S.nnz
-print A.nnz
+print(L.nnz)
+print(S.nnz)
+print(A.nnz)
 b = np.ones(n*n, 'd')
 
 # -----------------------------------------------------------------------------
@@ -76,18 +76,18 @@ t1 = time.clock()
 
 x = np.empty(n*n, 'd')
 info, iter, relres = pcg(S, b, x, tol, 2000)
-print 'info=%d, iter=%d, relres=%e' % (info, iter, relres)
+print('info=%d, iter=%d, relres=%e' % (info, iter, relres))
 
-print 'Solve time using SSS matrix: %8.2f s' % (time.clock() - t1)
+print('Solve time using SSS matrix: %8.2f s' % (time.clock() - t1))
 
-print 'norm(x) = %g' % np.linalg.norm(x)
+print('norm(x) = %g' % np.linalg.norm(x))
 
 r = np.empty(n*n, 'd')
 S.matvec(x, r)
 r = b - r
-print 'norm(b - A*x) = %g' % np.linalg.norm(r)
+print('norm(b - A*x) = %g' % np.linalg.norm(r))
 
-print x[0:10]
+print(x[0:10])
 
 # -----------------------------------------------------------------------------
 
@@ -95,16 +95,16 @@ t1 = time.clock()
 
 x = np.empty(n*n, 'd')
 info, iter, relres = pcg(A, b, x, tol, 2000)
-print 'info=%d, iter=%d, relres=%e' % (info, iter, relres)
+print('info=%d, iter=%d, relres=%e' % (info, iter, relres))
 
-print 'Solve time using CSR matrix: %8.2f sec' % (time.clock() - t1)
+print('Solve time using CSR matrix: %8.2f sec' % (time.clock() - t1))
 
-print 'norm(x) = %g' % np.linalg.norm(x)
+print('norm(x) = %g' % np.linalg.norm(x))
 
 r = np.empty(n*n, 'd')
 A.matvec(x, r)
 r = b - r
-print 'norm(b - A*x) = %g' % np.linalg.norm(r)
+print('norm(b - A*x) = %g' % np.linalg.norm(r))
 
 # -----------------------------------------------------------------------------
 
@@ -112,16 +112,16 @@ t1 = time.clock()
 
 x = np.empty(n*n, 'd')
 info, iter, relres = pcg(L, b, x, tol, 2000)
-print 'info=%d, iter=%d, relres=%e' % (info, iter, relres)
+print('info=%d, iter=%d, relres=%e' % (info, iter, relres))
 
-print 'Solve time using LL matrix: %8.2f sec' % (time.clock() - t1)
+print('Solve time using LL matrix: %8.2f sec' % (time.clock() - t1))
 
-print 'norm(x) = %g' % np.linalg.norm(x)
+print('norm(x) = %g' % np.linalg.norm(x))
 
 r = np.empty(n*n, 'd')
 A.matvec(x, r)
 r = b - r
-print 'norm(b - A*x) = %g' % np.linalg.norm(r)
+print('norm(b - A*x) = %g' % np.linalg.norm(r))
 
 # -----------------------------------------------------------------------------
 
@@ -130,16 +130,16 @@ t1 = time.clock()
 
 x = np.empty(n*n, 'd')
 info, iter, relres = pcg(S, b, x, tol, 2000, K_ssor)
-print 'info=%d, iter=%d, relres=%e' % (info, iter, relres)
+print('info=%d, iter=%d, relres=%e' % (info, iter, relres))
 
-print 'Solve time using SSS matrix and SSOR preconditioner: %8.2f sec' % (time.clock() - t1)
+print('Solve time using SSS matrix and SSOR preconditioner: %8.2f sec' % (time.clock() - t1))
 
-print 'norm(x) = %g' % np.linalg.norm(x)
+print('norm(x) = %g' % np.linalg.norm(x))
 
 r = np.empty(n*n, 'd')
 S.matvec(x, r)
 r = b - r
-print 'norm(b - A*x) = %g' % np.linalg.norm(r)
+print('norm(b - A*x) = %g' % np.linalg.norm(r))
 
 # -----------------------------------------------------------------------------
 

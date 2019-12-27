@@ -23,8 +23,8 @@ try:
     import setuptools  # If you want to enable 'python setup.py develop'
     #pass
 except:
-    print 'setuptools module not found.'
-    print "Install setuptools if you want to enable 'python setup.py develop'."
+    print('setuptools module not found.')
+    print("Install setuptools if you want to enable 'python setup.py develop'.")
 
 require('numpy>=1.2')
 
@@ -148,7 +148,7 @@ def setup_package():
             url = "pysparse.sf.net",
             download_url = "sf.net/projects/pysparse",
             license = 'BSD-style',
-            classifiers=filter(None, CLASSIFIERS.split('\n')),
+            classifiers=[_f for _f in CLASSIFIERS.split('\n') if _f],
             platforms = ["Windows", "Linux", "Solaris", "Mac OS-X", "Unix"],
             install_requires=['numpy>=1.2'],
             configuration=configuration,

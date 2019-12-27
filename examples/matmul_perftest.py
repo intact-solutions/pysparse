@@ -8,7 +8,7 @@ n = 1000000
 A = spmatrix.ll_mat(n, n)
 B = spmatrix.ll_mat(n, n)
 
-for i in xrange(n):
+for i in range(n):
     A[i,i] = i
     B[i,i] = i
     if i > 0:
@@ -22,5 +22,5 @@ for i in xrange(n):
 t1 = time.clock()
 C = spmatrix.matrixmultiply(A, B)
 t_mult = time.clock() - t1
-print 'time for multiplying %dx%d matrices: %.2f sec' % (n, n, t_mult)
-print C[:10,:10]
+print('time for multiplying %dx%d matrices: %.2f sec' % (n, n, t_mult))
+print(C[:10,:10])

@@ -91,7 +91,7 @@ class PysparseMatrix(SparseMatrix):
                 if size != nrow or size != ncol:
                     msg =  'size argument was given but does not match '
                     msg += 'nrow and ncol'
-                raise ValueError, msg
+                raise ValueError(msg)
             else:
                 nrow = ncol = size
 
@@ -137,7 +137,7 @@ class PysparseMatrix(SparseMatrix):
         elif name == 'shape':
             return self.getShape()
         msg = 'No such attribute: %s' % name
-        raise ValueError, msg
+        raise ValueError(msg)
 
     def __getitem__(self, index):
         m = self.matrix[index]
@@ -196,7 +196,7 @@ class PysparseMatrix(SparseMatrix):
         elif type(self) is type(other):
             if self.getShape() != other.getShape():
                 msg = 'Only sparse matrices of the same size may be added'
-                raise TypeError, msg
+                raise TypeError(msg)
             L = self.matrix.copy()
             if self.isSymmetric() and not other.isSymmetric():
                 L.generalize()
@@ -210,7 +210,7 @@ class PysparseMatrix(SparseMatrix):
         else:
             if self.getShape() != other.getShape():
                 msg = 'Only sparse matrices of the same size may be subtracted'
-                raise TypeError, msg
+                raise TypeError(msg)
             L = self.matrix.copy()
             if self.isSymmetric() and not other.isSymmetric():
                 L.generalize()
@@ -254,7 +254,7 @@ class PysparseMatrix(SparseMatrix):
 
         if isinstance(other, PysparseMatrix):
             if N != other.getShape()[0]:
-                raise TypeError, 'Matrices dimensions do not match for product'
+                raise TypeError('Matrices dimensions do not match for product')
 
             p = spmatrix.matrixmultiply(self.matrix, other.getMatrix())
             return PysparseMatrix(matrix=p)
@@ -269,13 +269,13 @@ class PysparseMatrix(SparseMatrix):
                 self.matrix.matvec(other, y)
                 return y
             else:
-                raise TypeError, 'Cannot multiply objects'
+                raise TypeError('Cannot multiply objects')
 
     def __imul__(self, other):
         # In-place multiplication (by a scalar)
         #if type(other) not in [type(0), type(0.0)]:
         if not (isinstance(other, int) or isinstance(other, float)):
-            raise TypeError, 'In-place multiplication is with scalars only'
+            raise TypeError('In-place multiplication is with scalars only')
         p = self.matrix
         p.scale(other)
         return self

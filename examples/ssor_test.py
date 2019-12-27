@@ -15,10 +15,10 @@ S = L.to_sss()
 
 b = np.ones(N*N, 'd')
 
-print 'Solving 2D-Laplace equation using PCG and SSOR preconditioner with variable omega'
-print
-print 'omega    nit    time       resid' 
-print '--------------------------------' 
+print('Solving 2D-Laplace equation using PCG and SSOR preconditioner with variable omega')
+print()
+print('omega    nit    time       resid') 
+print('--------------------------------') 
 
 for omega in [0.1*(i+1) for i in range(20)]:
 
@@ -39,4 +39,4 @@ for omega in [0.1*(i+1) for i in range(20)]:
         iter_str = str(iter)
     else:
         iter_str = '---'
-    print '%5.1f  %5s  %6.2f  %10.3e' % (omega, iter_str, elapsed_time, res_nrm2)
+    print('%5.1f  %5s  %6.2f  %10.3e' % (omega, iter_str, elapsed_time, res_nrm2))

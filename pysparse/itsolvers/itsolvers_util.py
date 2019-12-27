@@ -36,7 +36,7 @@ class ItSolver:
     def solve(self, b, x, tol, maxit, K=None):
         "Solve Ax = b iteratively with zero initial guess"
         if not self.itsolver:
-            raise NotImplementedError, 'This class cannot be used directly.'
+            raise NotImplementedError('This class cannot be used directly.')
 
         x[:] = 0
         info, iter, relres = self.itsolver(self.A, b, x, tol, maxit, K)
@@ -45,9 +45,9 @@ class ItSolver:
         self.lastIterations = iter
         self.lastInfo = info
         if self.debug:
-            print 'iterative solver returned:', info, iter, relres
+            print('iterative solver returned:', info, iter, relres)
         if info < 0:
-            raise RuntimeError, ('iterative solver %s returned error code %d' % (self.__class__.__name__, info), info, iter, relres)
+            raise RuntimeError('iterative solver %s returned error code %d' % (self.__class__.__name__, info), info, iter, relres)
 
     def __call__(self, *args, **kwargs):
         return self.solve(*args, **kwargs)
@@ -171,9 +171,9 @@ if __name__ == '__main__':
     for Solver in [Pcg, Minres, Cgs, Qmrs, Gmres, Bicgstab]:
         solver = Solver(A)
         solver.solve(b, x, 1.0e-6, 3*n)
-        print fmt % (solver.name, resid(A, b, x), solver.nofCalled,
-                     solver.totalIterations)
+        print(fmt % (solver.name, resid(A, b, x), solver.nofCalled,
+                     solver.totalIterations))
         solver.solve(b, x, 1.0e-6, 3*n, K)
-        print fmt % (solver.name, resid(A, b, x), solver.nofCalled,
-                     solver.totalIterations)
+        print(fmt % (solver.name, resid(A, b, x), solver.nofCalled,
+                     solver.totalIterations))
 

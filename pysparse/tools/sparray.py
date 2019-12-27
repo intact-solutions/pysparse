@@ -2,6 +2,7 @@
 from types import IntType,SliceType
 import operator
 from pysparse.sparse import spmatrix
+from functools import reduce
 
 class sparray:
     """
@@ -32,15 +33,15 @@ class sparray:
             self.data = spmatrix.ll_mat(reduce(operator.mul, dim), 1)
             self.dims = dim        
             if dicto:
-                for k, v in dicto.iteritems():
-                    shk = map(operator.__sub__, k, shifts)
+                for k, v in dicto.items():
+                    shk = list(map(operator.__sub__, k, shifts))
                     self.data[self.comp(shk), 0]=v
         
         elif type(dim)==IntType:
             self.data = spmatrix.ll_mat(dim,1)
             self.dims = dim        
             if dicto:
-                for k, v in dicto.iteritems():
+                for k, v in dicto.items():
                     shk = k - shifts
                     self.data[shk,0] = v
         
@@ -75,7 +76,7 @@ class sparray:
             self.data[k, 0] = value
             return
         
-        vec = map(lambda x: type(x) is SliceType, k)
+        vec = [type(x) is SliceType for x in k]
         
         if True in vec: # suppose only one slice
             ii = vec.index(True)
@@ -96,7 +97,7 @@ class sparray:
         """
         if type(k) is IntType: return self.data[k, 0]
         
-        vec = map(lambda x: type(x) is SliceType, k)
+        vec = [type(x) is SliceType for x in k]
         
         if True in vec: #suppose only one slice
             ii=vec.index(True)
@@ -112,6 +113,6 @@ class sparray:
             return self.data[self.comp(k), 0]
             
     def dump(self):
-        print self.data
+        print(self.data)
 
 
